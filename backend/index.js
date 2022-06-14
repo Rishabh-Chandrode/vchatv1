@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const userroutes = require("./routes/users");
 const authroutes = require("./routes/auth");
+const postroutes = require("./routes/posts");
 
 dotenv.config(); 
 const PORT = process.env.PORT;
@@ -23,6 +24,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use("/api/users",userroutes); 
 app.use("/api/auth",authroutes); 
+app.use("/api/posts",postroutes); 
 
 app.get('/', (req, res) => { 
   res.send('GET request to the homepage')
