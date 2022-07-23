@@ -1,7 +1,7 @@
 import React from 'react'
 import './post.css'
 import noprofile from "../assests/images/noprofile.png"
-const Post = () => {
+const Post = ({post}) => {
   return (
     <div className='post'>
         <div className='post__header'>
@@ -9,7 +9,7 @@ const Post = () => {
                 <img src={noprofile} alt='profile' className='post__header__profilePicture'/>
             </div>
             <div className='post__header__title'>
-                username
+                {post.username}
             </div>
         </div>
         <div className='post__body'>
@@ -19,7 +19,7 @@ const Post = () => {
                 </div>
 
                 <div className='post__body__content__text'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {post.desc}
                 </div>
                 
             </div>
