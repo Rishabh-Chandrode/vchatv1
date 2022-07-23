@@ -1,0 +1,6 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: aquamarine;
+    height: 6vh;
+}

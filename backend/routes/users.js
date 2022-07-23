@@ -55,6 +55,16 @@ router.get("/:id" ,async (req,res) => {
     }
 })
 
+//get all users 
+router.get("/get/allusers" ,async (req,res) => {
+    try{
+        const users = await User.find({});
+        res.status(200).json(users);
+    }catch(err){
+        console.log(err);
+    }
+})
+
 
 //follow a user
 router.put("/:id/follow",async (req,res) =>{

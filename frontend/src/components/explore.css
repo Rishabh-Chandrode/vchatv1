@@ -1,0 +1,28 @@
+.explore{
+    width: 24%;
+    height: 100%;
+    background-color: wheat;
+}
+.explore__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+}
+.explore__body__item{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.explore__profilePicture{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+}
+.explore__body__item__username{
+    padding: 5px;
+}

@@ -1,0 +1,16 @@
+.feed{
+    width: 49%;
+    height: 94vh;
+    overflow-y: scroll;
+}
+.feed::-webkit-scrollbar {
+    display: none;
+}
+.feed__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+}
