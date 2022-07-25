@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blueviolet;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     margin-top: 10px;
@@ -16,7 +16,7 @@
     justify-content: flex-start;
     align-items: center;
     border-radius: 10px 10px 0px 0px;
-    background-color: wheat;
+    
     border-bottom: 1px solid #e5e5e5;  
     width: 100%; 
 }

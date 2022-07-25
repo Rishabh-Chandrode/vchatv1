@@ -1,8 +1,33 @@
 import React from 'react'
 import './messanger.css'
+import axios from "axios";
+import {useState , useEffect} from "react";
 import noprofile from "../assests/images/noprofile.png"
 
 const Messanger = () => {
+  const [users, setUsers] = useState();
+  const [isfetched,setIsFetched] = useState(false);
+ 
+  useEffect(() => {
+    if(!isfetched){
+      try{
+        async function getusers(){  
+          await axios.get("api/users/get/allusers").then((res) => {
+            
+            setUsers(res.data);
+            
+          })
+        }
+        getusers();
+      }catch(err){
+        console.log(err);
+      } 
+    }  
+    setIsFetched(true);   
+  },[users]);
+  
+  
+  if(users)
   return (
     <div className='messanger'>
       <div className='messanger__header'>
@@ -11,40 +36,15 @@ const Messanger = () => {
         </div>
       </div>
       <div className='messanger__body'>
-
-            <div className='messanger__body__item'>
+      {users.map((user) => 
+            <div className='messanger__body__item' key={user._id}>
               <div className='messanger__body__item__profilePicture'>
                 <img src={noprofile} className="messanger__profilePicture" alt="profilePicture" />
               </div>
-              <div className='messanger__body__item__username'>username</div>
+              <div className='messanger__body__item__username'>{user.username}</div>
             </div>
-            
-            
-            <div className='messanger__body__item'>
-              <div className='messanger__body__item__profilePicture'>
-                <img src={noprofile} className="messanger__profilePicture" alt="profilePicture" />
-              </div>
-              <div className='messanger__body__item__username'>username</div>
-            </div>
-            
-            
-            <div className='messanger__body__item'>
-              <div className='messanger__body__item__profilePicture'>
-                <img src={noprofile} className="messanger__profilePicture" alt="profilePicture" />
-              </div>
-              <div className='messanger__body__item__username'>username</div>
-            </div>
-            
-            
-            <div className='messanger__body__item'>
-              <div className='messanger__body__item__profilePicture'>
-                <img src={noprofile} className="messanger__profilePicture" alt="profilePicture" />
-              </div>
-              <div className='messanger__body__item__username'>username</div>
-            </div>
-            
-            
-
+      )}      
+      
         </div>
     </div>
   )

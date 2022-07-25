@@ -2,6 +2,7 @@
     width: 49%;
     height: 94vh;
     overflow-y: scroll;
+    flex-grow: 0.3;
 }
 .feed::-webkit-scrollbar {
     display: none;
