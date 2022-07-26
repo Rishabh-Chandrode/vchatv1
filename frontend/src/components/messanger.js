@@ -12,7 +12,7 @@ const Messanger = () => {
     if(!isfetched){
       try{
         async function getusers(){  
-          await axios.get("api/users/get/allusers").then((res) => {
+          await axios.get("http://localhost:5000/api/users/get/allusers").then((res) => {
             
             setUsers(res.data);
             

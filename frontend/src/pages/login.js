@@ -1,9 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import axios from 'axios'
 import './login.css'
 
 const Login = () => {
+    const navigate = useNavigate();
     const [inputField , setInputField] = useState({
         email: '',
         password: ''
@@ -31,6 +34,10 @@ const Login = () => {
           axios(config)
           .then(function (response) {
             console.log(JSON.stringify(response.data));
+            
+            navigate(`/${response.data._id}/timeline`);
+            
+           
           })
           .catch(function (error) {
             console.log(error);
