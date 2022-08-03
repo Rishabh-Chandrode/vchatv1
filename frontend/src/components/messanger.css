@@ -1,6 +1,11 @@
 .messanger{
     width: 24%;
+    height: 94vh;
+    overflow-y: scroll;
     background-color: white;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 .messanger__header__title{
     display: flex;

@@ -4,14 +4,10 @@ import {  useParams } from 'react-router-dom';
 import axios from "axios";
 import {useState , useEffect} from "react";
 import "./userprofile.css"
-import coverimg from "./../assests/images/coverimg.jpg"
+
 const UserProfile = () => {
   let { id } = useParams();
-
-
   const [user, setUser] = useState();
-  const [posts, setPosts] = useState();
-  const [isfetched,setIsFetched] = useState(false);
 
   useEffect(() => {
     

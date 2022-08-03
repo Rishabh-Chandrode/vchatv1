@@ -7,33 +7,32 @@ import Navbar from '../components/navbar'
 import {  useParams } from 'react-router-dom';
 import axios from "axios";
 import {useState , useEffect} from "react";
-
 const Home = () => {
   let { id } = useParams();
   const [user, setUser] = useState();
-  useEffect(() => {
-    
-    try{
-      async function getuser(){  
-        await axios.get(`http://localhost:5000/api/users/${id}`).then((res) => {
-          setUser(res.data);
-        })
-      }
-      getuser();
-    }catch(err){
-      console.log(err);
-    } 
-   
   
-},[id]);
+    useEffect(() => {           
+        try{
+          async function getuser(){  
+            await axios.get(`http://localhost:5000/api/users/${id}`).then((res) => {
+              setUser(res.data);
+            })
+          }
+          getuser();
+        }catch(err){
+          console.log(err);
+        }
+    },[user]);
+
+ 
 if(user)
   return (
     <div className="home">
       <Navbar />
     <div className='home-container '>
-        <Explore className='home-explore' />
+        <Explore className='home-explore'id={id} />
         <Feed className="home-feed" id={id}/>
-        <Messanger className="home-messanger" />
+        <Messanger className="home-messanger" id={id}/>
     </div>
     </div>
   )

@@ -1,48 +1,41 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
-import axios from 'axios'
+
+
 import './login.css'
+import authService from '../services/authService';
+
 
 const Login = () => {
     const navigate = useNavigate();
+   
     const [inputField , setInputField] = useState({
         email: '',
         password: ''
     })
 
-    
-
     const inputHandler = (e) =>{
         setInputField( {...inputField,[e.target.name]: e.target.value} )
-        
-        console.log(inputField.email)
-        console.log(inputField.password)
     }
+    const submitButton = async () =>{
+        if(!inputField.email || !inputField.password){
+            alert("Please fill all the fields")
+        }else{
+          try{
+            const response = await authService.login(inputField.email, inputField.password);
+            localStorage.setItem('userId', response._id);
+            navigate(`/${response._id}/timeline`);
+          }catch(err){
+            console.log(err);
+          }
+        }
+    
+    }
+    
+    
+    
 
-    const submitButton = () =>{
-        var config = {
-            method: 'post',
-            url: 'http://localhost:5000/api/auth/login',
-            headers: { 
-              'Content-Type': 'application/json'
-            },
-            data : inputField
-          };
-          
-          axios(config)
-          .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            
-            navigate(`/${response.data._id}/timeline`);
-            
-           
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    }
     
   return (
     <div className="login">

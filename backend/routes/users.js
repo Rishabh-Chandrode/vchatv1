@@ -65,6 +65,16 @@ router.get("/get/allusers" ,async (req,res) => {
     }
 })
 
+router.get("/:id/explore", async (req,res) => {
+    try{
+        const users = await User.find({ _id: { $ne: req.params.id } });
+        
+        res.status(200).json(users);
+    }catch(err){
+        console.log(err);
+    }
+})
+
 
 //follow a user
 router.put("/:id/follow",async (req,res) =>{
@@ -96,7 +106,7 @@ router.put("/:id/unfollow",async (req,res) =>{
             const currentUser = await User.findById(req.body.userId);
             if(user.followers.includes(req.body.userId)){
                 await user.updateOne({$pull : {followers : req.body.userId}});
-                await currentUser.updateOne({$pull : {followings : req.body.userId}});
+                await currentUser.updateOne({$pull : {followings : req.params.id}});
                 res.status(200).json("user has been unfollowed ")
             }else{
                 res.status(403).json("you dont follow the user");

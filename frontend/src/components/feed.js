@@ -10,7 +10,7 @@ import {useState , useEffect} from "react";
     }
     
   const [posts, setPosts] = useState();
-  const [isfetched,setIsFetched] = useState(false);
+ 
  
   useEffect(() => {
     
