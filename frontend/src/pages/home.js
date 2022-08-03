@@ -22,7 +22,7 @@ const Home = () => {
         }catch(err){
           console.log(err);
         }
-    },[user]);
+    },[]);
 
  
 if(user)

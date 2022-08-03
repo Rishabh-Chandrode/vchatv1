@@ -7,13 +7,13 @@ import noprofile from "../assests/images/noprofile.png"
 const Messanger = () => {
   const [users, setUsers] = useState();
   const [isfetched,setIsFetched] = useState(false);
- 
+  const userId = localStorage.getItem("userId");
   useEffect(() => {
     if(!isfetched){
       try{
         async function getusers(){  
-          await axios.get("http://localhost:5000/api/users/get/allusers").then((res) => {
-            
+          await axios.get(`http://localhost:5000/api/users/${userId}/followers`).then((res) => {
+            console.log(res.data);
             setUsers(res.data);
             
           })

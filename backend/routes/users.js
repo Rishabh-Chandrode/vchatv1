@@ -65,9 +65,27 @@ router.get("/get/allusers" ,async (req,res) => {
     }
 })
 
+//get all followers 
+router.get("/:id/followers",async (req,res) => {
+    try{
+        const user = await User.findById(req.params.id);
+        const followings = user.followings;
+        //console.log(user);
+        const users = await User.find({_id: {$in: followings}});
+        res.status(200).json(users);
+        //res.status(200).json(followings);
+    }catch(err){
+        console.log(err);
+    }
+})
+
+//user recommendation for a user
 router.get("/:id/explore", async (req,res) => {
     try{
-        const users = await User.find({ _id: { $ne: req.params.id } });
+        const currentUser = await User.findById(req.params.id);
+        const currentUserFollowings = currentUser.followings;
+        
+        const users = await User.find({ _id:  {$nin: currentUserFollowings } });
         
         res.status(200).json(users);
     }catch(err){

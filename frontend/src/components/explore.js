@@ -86,7 +86,7 @@ const Explore = () => {
                   {user.username}
                 </Link>
               </div>
-              <button id={user._id} onClick={user.followers.includes(currentUserId) ? unfollowUser : followUser}>
+              <button  id={user._id} onClick={user.followers.includes(currentUserId) ? unfollowUser : followUser}>
                 {user.followers.includes(currentUserId) ? "Unfollow" : "Follow"}
               </button>
             </div>
