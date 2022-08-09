@@ -13,7 +13,7 @@ const Messanger = () => {
       try{
         async function getusers(){  
           await axios.get(`http://localhost:5000/api/users/${userId}/followers`).then((res) => {
-            console.log(res.data);
+            
             setUsers(res.data);
             
           })

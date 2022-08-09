@@ -23,28 +23,28 @@ const Explore = () => {
         },
         data: { userId: id },
       });
-	  window.location.reload();
+      window.location.reload();
       console.log(response.data);
     } catch (err) {
       console.log(err);
     }
   };
   const unfollowUser = async (event) => {
-	try {
-	  const response = await axios({
-		method: "put",
-		url: `http://localhost:5000/api/users/${event.target.id}/unfollow`,
-		headers: {
-		  "Content-Type": "application/json",
-		},
-		data: { userId: id },
-	  });
-	  window.location.reload();
-	  console.log(response.data);
-	} catch (err) {
-	  console.log(err);
-	}
-  }
+    try {
+      const response = await axios({
+        method: "put",
+        url: `http://localhost:5000/api/users/${event.target.id}/unfollow`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { userId: id },
+      });
+      window.location.reload();
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (!isfetched) {
@@ -62,7 +62,6 @@ const Explore = () => {
       }
     }
     setIsFetched(true);
-	
   }, [users]);
 
   if (users)
@@ -73,23 +72,40 @@ const Explore = () => {
         </div>
         <div className="explore__body">
           {users.map((user) => (
+            user._id===currentUserId ? null :  
             <div className="explore__body__item" key={user._id}>
-              <div className="explore__body__item__profilePicture">
-                <img
-                  src={noprofile}
-                  className="explore__profilePicture"
-                  alt="profilePicture"
-                />
+              <div className="explore__body__item__left">
+                <div className="explore__body__item__profilePicture">
+                  <img
+                    src={noprofile}
+                    className="explore__profilePicture"
+                    alt="profilePicture"
+                  />
+                </div>
+                <div className="explore__body__item__username">
+                  <Link to={`/userprofile/${user._id}`} key={user._id}>
+                    {user.username}
+                  </Link>
+                </div>
               </div>
-              <div className="explore__body__item__username">
-                <Link to={`/userprofile/${user._id}`} key={user._id}>
-                  {user.username}
-                </Link>
+              <div className="explore__body__item__right">
+                <div className="explore__body__item__button">
+                  <button
+                    id={user._id}
+                    onClick={
+                      user.followers.includes(currentUserId)
+                        ? unfollowUser
+                        : followUser
+                    }
+                  >
+                    {user.followers.includes(currentUserId)
+                      ? "Unfollow"
+                      : "Follow"}
+                  </button>
+                </div>
               </div>
-              <button  id={user._id} onClick={user.followers.includes(currentUserId) ? unfollowUser : followUser}>
-                {user.followers.includes(currentUserId) ? "Unfollow" : "Follow"}
-              </button>
             </div>
+            
           ))}
         </div>
       </div>

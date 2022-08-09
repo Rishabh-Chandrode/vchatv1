@@ -69,11 +69,22 @@ router.get("/get/allusers" ,async (req,res) => {
 router.get("/:id/followers",async (req,res) => {
     try{
         const user = await User.findById(req.params.id);
-        const followings = user.followings;
+        const followers = user.followers;
         //console.log(user);
-        const users = await User.find({_id: {$in: followings}});
+        const users = await User.find({_id: {$in: followers}});
         res.status(200).json(users);
         //res.status(200).json(followings);
+    }catch(err){
+        console.log(err);
+    }
+})
+//get all followings 
+router.get("/:id/followings",async (req,res) => {
+    try{
+        const currentUser = await User.findById(req.params.id);
+        const followings = currentUser.followings;
+        const users = await User.find({_id: {$in: followings}});
+        res.status(200).json(users);
     }catch(err){
         console.log(err);
     }

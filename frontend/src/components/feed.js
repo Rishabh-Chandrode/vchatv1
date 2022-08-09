@@ -4,10 +4,8 @@ import Post from './post'
 import axios from "axios";
 import {useState , useEffect} from "react";
 
-  const Feed = ({id}) => {
-    if(!id) {
-      id = "62dc560cd2d584eb74f85cb1";
-    }
+const Feed = ({parent,id}) => {
+    
     
   const [posts, setPosts] = useState();
  
@@ -16,7 +14,7 @@ import {useState , useEffect} from "react";
     
       try{
         async function getposts(){  
-          await axios.get(`http://localhost:5000/api/posts/${id}/timeline`).then((res) => {
+          await axios.get(`http://localhost:5000/api/posts/${id}/${parent}`).then((res) => {
             setPosts(res.data);
           })
         }

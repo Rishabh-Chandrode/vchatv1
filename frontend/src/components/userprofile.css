@@ -37,9 +37,32 @@
 }
 .userprofile__header__bio__info__container{
     flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.userprofile__header__bio__info__username{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.userprofile__header__bio__info__followersinfo{
+    display: flex;
+    justify-content: space-around;
 }
 
 .userprofile__body{
     display: flex;
     justify-content: center;
+}
+
+.userprofile__feed{
+    flex:2;
+    padding: 5px;
+}
+.userprofile__friends{
+    flex: 1;
+    padding: 5px;
 }

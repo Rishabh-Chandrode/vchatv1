@@ -33,6 +33,9 @@ const Register = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        localStorage.setItem('userId', response.user._id);
+            localStorage.setItem('userName', response.user.username);
+            
         navigate(`/${response.user._id}/timeline`);
 
         // await AuthService.signup(username, email, password)
@@ -138,11 +141,13 @@ const Register = () => {
             </div>
           </div>
         </form>
-        <Link to="/">
+        
         <div className="login__button">
-          Login
-        </div>
+        Already Registered 
+        <Link to="/">
+          . Login
         </Link>
+        </div>
       </div>
     </div>
   );

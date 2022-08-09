@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 import './login.css'
@@ -9,12 +9,10 @@ import authService from '../services/authService';
 
 const Login = () => {
     const navigate = useNavigate();
-   
     const [inputField , setInputField] = useState({
         email: '',
         password: ''
     })
-
     const inputHandler = (e) =>{
         setInputField( {...inputField,[e.target.name]: e.target.value} )
     }
@@ -25,18 +23,18 @@ const Login = () => {
           try{
             const response = await authService.login(inputField.email, inputField.password);
             localStorage.setItem('userId', response._id);
+            localStorage.setItem('userName', response.username);
             navigate(`/${response._id}/timeline`);
           }catch(err){
             console.log(err);
+            alert(err.response.data)
           }
         }
     
     }
     
     
-    
 
-    
   return (
     <div className="login">
         <div className='login__wrapper' >
@@ -67,8 +65,10 @@ const Login = () => {
                 <div className="login__body__item">
                     <button onClick={submitButton} className="login__body__item__button">Login</button>
                 </div>
+            Not a user? <Link to={"/signup"}>SignUp</Link>
             </div>
           </div>
+          
     </div>
   )
 }

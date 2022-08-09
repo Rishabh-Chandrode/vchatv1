@@ -4,7 +4,16 @@
 .profile-container{
     display: flex;
     flex-direction: row;
-    
+    justify-content: space-evenly;
     height: 94vh;
-    margin: 0 90px;
+    margin:  0 8rem;
+    /* margin: 0 90px; */
+}
+
+.profile__explore{
+    min-width: 15%;
+    flex: 1;
+}
+.profile__userprofile{
+    flex: 3.5;
 }

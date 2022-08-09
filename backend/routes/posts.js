@@ -88,4 +88,11 @@ router.get("/:id/timeline",async (req,res) => {
     }
 })
 
+// get all posts of user
+
+router.get("/:id/allposts", async (req,res) => {
+  const posts = await Post.find({userId: req.params.id});
+  res.status(200).json(posts);
+})
+
 module.exports = router;

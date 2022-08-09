@@ -6,3 +6,33 @@
     justify-content: space-between;
     padding: 0 2rem;
 }
+
+.navbar__right{
+    display: flex;
+    align-items: baseline;
+}
+
+.navbar__right__username{
+    text-decoration: none;
+    border: none;
+  background-color: #0081ab;
+  padding: 5px 10px;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+}
+.navbar__right__logout{
+    /* background-color: #4CAF50; */
+  border: none;
+  background-color: #0081ab;
+  padding: 5px 10px;
+  text-align: center;
+  
+  font-size: 16px;
+}
+
+.navbar__right__logout:hover{
+    background-color: #0081ab;
+    color: white;
+    cursor: pointer;
+}
