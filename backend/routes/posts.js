@@ -73,7 +73,7 @@ router.get("/:id",async (req,res) => {
 //get timeline
 
 router.get("/:id/timeline",async (req,res) => {
-    let postArray = [];
+    let postArray ;
     try{
       const currentUser = await User.findById(req.params.id);
       const userPosts = await Post.find({userId: currentUser._id});
@@ -82,7 +82,16 @@ router.get("/:id/timeline",async (req,res) => {
             return Post.find({userId: friendId});
         })
       );
-      res.json(userPosts.concat(...friendPosts));
+      postArray = userPosts.concat(friendPosts);
+      postArray.sort( (a,b) => { 
+        return b.createdAt - a.createdAt;
+      
+       } )
+
+       
+       postArray = postArray.flat(1);
+      
+      res.json(postArray);
     }catch(err){
       res.status(500).json(err);
     }
@@ -92,6 +101,10 @@ router.get("/:id/timeline",async (req,res) => {
 
 router.get("/:id/allposts", async (req,res) => {
   const posts = await Post.find({userId: req.params.id});
+  posts.sort( (a,b) => { 
+    return b.createdAt - a.createdAt;
+  
+   } )
   res.status(200).json(posts);
 })
 

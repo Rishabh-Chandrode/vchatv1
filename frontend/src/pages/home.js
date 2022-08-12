@@ -7,6 +7,7 @@ import Navbar from "../components/navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import PostCreator from "../components/postCreator";
 const Home = () => {
   let { id } = useParams();
   const [user, setUser] = useState();
@@ -33,6 +34,7 @@ const Home = () => {
             <Explore  id={id} />
           </div>
           <div className="home__feed">
+            <PostCreator />
             <Feed parent={"timeline"} id={id} />
           </div>
           <div className="home__messanger">

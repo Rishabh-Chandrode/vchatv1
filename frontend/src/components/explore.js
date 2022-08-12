@@ -62,7 +62,7 @@ const Explore = () => {
       }
     }
     setIsFetched(true);
-  }, [users]);
+  }, []);
 
   if (users)
     return (
