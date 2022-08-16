@@ -5,18 +5,46 @@ import axios from "axios";
 import postService from "../services/postService";
 
 const PostCreator = () => {
-  const [postContent, setPostContent] = useState();
+  
+  
+  const [postDesc, setPostDesc] = useState("");
+  
+  const [baseImage, setBaseImage] = useState("");
 
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    const img = JSON.stringify(base64);
+    setBaseImage(base64);
+    console.log(base64);
+  };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!postContent) {
-      alert("can't post empty post");
-    }
-    const currentUserId = localStorage.getItem("userId"); 
-
     try{
-      const response = await postService.createPost(postContent);
+      const userId = localStorage.getItem("userId");
+      const response = await postService.createPost(postDesc, baseImage, userId);
       console.log(response);
+      setBaseImage("");
+      setPostDesc("");
+      //window.location.reload();
     }catch(err){
       console.log(err);
     }
@@ -24,6 +52,7 @@ const PostCreator = () => {
 
   return (
     <div className="postCreator">
+      
       <div className="postCreator__upper">
         <div className="postCreator__avatar__container">
           <img
@@ -38,17 +67,27 @@ const PostCreator = () => {
             className="postCreator__text__input"
             type="text"
             placeholder="Write a post"
-            value={postContent}
-            onChange = { (e) => {setPostContent(e.target.value)} }
+            name="desc"
+            value={postDesc}
+            onChange = {(e) => setPostDesc(e.target.value)}
           />
         </div>
       </div>
       <div className="postCreator__lower">
-        <div className="postCreator__attachments__images">images</div>
+        <div className="postCreator__attachments__images">
+        <input
+        type="file"
+        onChange={(e) => {
+          uploadImage(e);
+        }}
+      />
+        </div>
         <div className="postCreator__attachments__videos">Videos</div>
         <div className="postCreator__attachments__audios">Audios</div>
-        <button className="postCreator__postButton" onClick={handleSubmit}>Post</button>
+        <button className="postCreator__postButton"  onClick={handleSubmit} type="button">Post</button>
       </div>
+      
+      {baseImage && <img src={baseImage} className="post__body__content__image"  />}
     </div>
   );
 };

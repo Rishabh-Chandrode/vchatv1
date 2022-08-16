@@ -41,7 +41,7 @@ const Messanger = () => {
               <div className='messanger__body__item__profilePicture'>
                 <img src={noprofile} className="messanger__profilePicture" alt="profilePicture" />
               </div>
-              <div className='messanger__body__item__username'>{user.username}</div>
+              <div onClick={window.location.reload} className='messanger__body__item__username'>{user.username}</div>
             </div>
       )}      
       

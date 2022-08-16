@@ -34,8 +34,8 @@ const Home = () => {
             <Explore  id={id} />
           </div>
           <div className="home__feed">
-            <PostCreator />
-            <Feed parent={"timeline"} id={id} />
+            
+            <Feed parent={"timeline"} Id={id} />
           </div>
           <div className="home__messanger">
             <Messanger id={id} />

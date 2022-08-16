@@ -1,17 +1,31 @@
 const router = require("express").Router();
 const Post = require("../models/Post.js");
 const User = require("../models/User.js");
-//create a post
-router.post("/", async (req, res) => {
-  const newPost = new Post(req.body);
-  try {
-    const savedPost = await newPost.save();
-    res.status(200).json(savedPost);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
+
+
+
+//create a post
+router.post("/", async (req,res) => {
+  const {desc, img, userId, username} = req.body;
+  //const img = JSON.stringify(baseImage);
+  //console.log(img);
+  const post = new Post({
+    desc: desc,
+    img: img,
+    userId: userId,
+    username: username
+  });
+  try{
+    await post.save();
+    res.status(200).send(post);
+  }catch(err){
+    res.status(400).send(err);
+  }
+})
+    
+
+  
 //update post
 router.put("/:id", async (req, res) => {
   try {

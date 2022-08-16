@@ -2,7 +2,7 @@
     /* width: 49%; */
     height: 94vh;
     overflow-y: scroll;
-    
+    max-height: 100%;
     max-width: 600px;
     margin: 0 auto;
 }

@@ -27,7 +27,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__right">
         
-        <Link className="navbar__right__username" to={`/userprofile/${userId}`}>
+        <Link className="navbar__right__username" onClick={window.location.reload} to={`/userprofile/${userId}`}>
                     {userName}
                   </Link>
        

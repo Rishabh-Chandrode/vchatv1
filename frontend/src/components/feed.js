@@ -3,12 +3,14 @@ import './feed.css'
 import Post from './post'
 import axios from "axios";
 import {useState , useEffect} from "react";
+import PostCreator from './postCreator';
+import { useParams } from 'react-router';
 
-const Feed = ({parent,id}) => {
-    
+const Feed = ({parent,Id}) => {
+  const {id} = useParams();
   const [isFetched, setIsFetched] = useState(false);
   const [posts, setPosts] = useState();
- 
+  
  
   useEffect(() => {
     
@@ -36,6 +38,7 @@ const Feed = ({parent,id}) => {
   return <div>Loading...</div>
   return (
     <div className='feed'>
+      {parent === "timeline" ?<PostCreator/> : null}
       <div className='feed__header'>
         <div className='feed__header__title'>
           Feed
