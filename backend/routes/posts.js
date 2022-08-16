@@ -97,14 +97,14 @@ router.get("/:id/timeline",async (req,res) => {
         })
       );
       postArray = userPosts.concat(friendPosts);
-      postArray.sort( (a,b) => { 
+      
+       
+       postArray = postArray.flat(1);
+       postArray.sort( (a,b) => { 
         return b.createdAt - a.createdAt;
       
        } )
 
-       
-       postArray = postArray.flat(1);
-      
       res.json(postArray);
     }catch(err){
       res.status(500).json(err);

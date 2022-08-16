@@ -86,7 +86,7 @@ const Connections = () => {
                 />
               </div>
               <div className="explore__body__item__username">
-                <Link to={`/userprofile/${user._id}`}  key={user._id}>
+                <Link to={`/userprofile/${user._id}`} onClick={window.location.reload} key={user._id}>
                   {user.username}
                 </Link>
               </div>

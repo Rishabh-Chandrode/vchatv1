@@ -13,7 +13,7 @@ const createPost = async (postDesc, baseImage, userId) => {
             },
             data: {desc:postDesc, img:baseImage, userId:userId, username:currentUserName},
           })
-          console.log(response);
+         // console.log(response);
           return response;
     }catch(err){
         return err.response;

@@ -35,7 +35,7 @@ const Feed = ({parent,Id}) => {
   });
   
   if(!posts)
-  return <div>Loading...</div>
+  return <div class="loader"></div>
   return (
     <div className='feed'>
       {parent === "timeline" ?<PostCreator/> : null}

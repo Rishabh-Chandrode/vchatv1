@@ -39,3 +39,6 @@
     padding: 5px;
     justify-content: space-around;
 }
+.postCreator__attachments:hover{
+    cursor: pointer;
+}
