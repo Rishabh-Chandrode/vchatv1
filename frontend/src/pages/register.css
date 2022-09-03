@@ -29,3 +29,19 @@
 .register__body__item{
     padding: 15px;
 }
+
+.register__body__item__input{
+    padding: 5px;
+}
+
+.form__input{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.register__body__item__button{
+    padding: 10px 20px;
+    background-color: #50c878;
+    border: none;
+    border-radius: 20px;
+}

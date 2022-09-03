@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./postCreator.css";
 import noprofile from "../assests/images/noprofile.png";
-import axios from "axios";
+
 import postService from "../services/postService";
 
 const PostCreator = () => {
@@ -12,7 +12,7 @@ const PostCreator = () => {
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
-    const img = JSON.stringify(base64);
+ 
     setBaseImage(base64);
     //console.log(base64);
   };
@@ -104,7 +104,7 @@ const PostCreator = () => {
       </div>
 
       {isPosting && baseImage && (
-        <img src={baseImage} className="post__body__content__image" />
+        <img alt="img" src={baseImage} className="post__body__content__image" />
       )}
       {!isPosting && baseImage && <div>plese wait</div>}
     </div>

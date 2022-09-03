@@ -39,11 +39,11 @@ const Feed = ({parent,Id}) => {
   return (
     <div className='feed'>
       {parent === "timeline" ?<PostCreator/> : null}
-      <div className='feed__header'>
+      {/* <div className='feed__header'>
         <div className='feed__header__title'>
           Feed
         </div>
-      </div>
+      </div> */}
       <div className='feed__body'>
         {posts.flatMap((post) =>
           <Post post = {post} key={post._id} />

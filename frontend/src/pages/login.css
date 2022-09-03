@@ -13,12 +13,12 @@
     
     justify-content: space-evenly;
     height: 70%;
-    width: 30%;
-   
+    min-width: 20%;
+    max-width: 90%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    margin-top: 10px;
+   
 }
 .login__header__title{
     font-size: 3rem;
@@ -28,4 +28,33 @@
 }
 .login__body__item{
     padding: 15px;
+    
+}
+.login__body__item__title{
+    display: inline;
+   
+}
+.login__body__item__input{
+    padding: 10px;
+    border-radius: 20px;
+    width: 80%;
+    font-size: 1rem;
+}
+.login__button__wrapper{
+    display: flex;
+    justify-content: center;
+}
+.login__button{
+    padding: 10px 30px;
+    border-radius: 20px;
+    background-color: #0081ab;
+    font-size: 18px;
+}
+.login__button:hover{
+    color: white;
+    border-color: white;
+}
+.signup__button{
+    display: flex;
+    justify-content: center;
 }

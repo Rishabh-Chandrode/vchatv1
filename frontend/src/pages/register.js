@@ -38,16 +38,7 @@ const Register = () => {
             
         navigate(`/${response.user._id}/timeline`);
 
-        // await AuthService.signup(username, email, password)
-        // .then(function (response) {
-        //   console.log(response.data);
         
-        //   if(!response){
-        //     alert("NO response from server");
-        //   }else{
-        //   navigate(`/${response.data.user._id}/timeline`);
-        //   }
-        // })
       }catch(err){
         console.log(err);
       }
@@ -69,8 +60,9 @@ const Register = () => {
               <label htmlFor="username" className="register__body__item__title">
                 Username
               </label>
-              <div className="register__body__item__input">
+              <div className="register__body__item__input__wrapper">
                 <input
+                  className="form__input"
                   type="text"
                   placeholder="Username"
                   id="username"
@@ -85,8 +77,9 @@ const Register = () => {
               <label htmlFor="email" className="register__body__item__title">
                 Email
               </label>
-              <div className="register__body__item__input">
+              <div className="register__body__item__input__wrapper">
                 <input
+                className="form__input"
                   type="email"
                   placeholder="Email"
                   id="email"
@@ -101,8 +94,9 @@ const Register = () => {
               <label htmlFor="password" className="register__body__item__title">
                 Password
               </label>
-              <div className="register__body__item__input">
+              <div className="register__body__item__input__wrapper">
                 <input
+                className="form__input"
                   type="password"
                   placeholder="Password"
                   id="password"
@@ -119,8 +113,9 @@ const Register = () => {
               >
                 Confirm Password
               </label>
-              <div className="register__body__item__input">
+              <div className="register__body__item__input__wrapper">
                 <input
+                className="form__input"
                   type="password"
                   placeholder="Confirm Password"
                   id="confirmPassword"
@@ -131,10 +126,10 @@ const Register = () => {
                 />
               </div>
             </div>
-            <div className="login__body__item">
+            <div className="register__body__item">
               <button
                 onClick={handelregister}
-                className="login__body__item__button"
+                className="register__body__item__button"
               >
                 Register
               </button>
@@ -142,10 +137,10 @@ const Register = () => {
           </div>
         </form>
         
-        <div className="login__button">
-        Already Registered 
+        Already Registered ?
+        <div className="register__login__button">
         <Link to="/">
-          . Login
+          Login
         </Link>
         </div>
       </div>
