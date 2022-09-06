@@ -47,8 +47,12 @@
 .login__button{
     padding: 10px 30px;
     border-radius: 20px;
-    background-color: #0081ab;
+    
     font-size: 18px;
+    
+    background-color: #50c878;
+    border: none;
+    
 }
 .login__button:hover{
     color: white;

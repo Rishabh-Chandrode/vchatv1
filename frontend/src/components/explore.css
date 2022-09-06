@@ -1,6 +1,7 @@
 .explore{
     /* width: 24%; */
     height: 94vh;
+    min-width: 300px;
     overflow-y: scroll;
     background-color: white;
 }
@@ -16,10 +17,10 @@
     border-bottom: 1px solid #e5e5e5;
 }
 .explore__body__item{
-    padding: 5px;
+    padding: 5px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .explore__profilePicture{
     width: 50px;
@@ -31,10 +32,22 @@
 .explore__body__item__left{
     display: flex;
 }
-.explore__body__item__username{
+.explore__body__item__username__wrapper{
     padding: 5px;
 }
+.explore__body__item__username{
+    text-decoration: none;
+    color: black;
 
-.explore__body__item__button{
+}
+
+.explore__body__item__button__wrapper{
     float: right;
+    
+}
+.explore__body__item__button{
+    background-color: #5dd0ae;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 2px;
 }

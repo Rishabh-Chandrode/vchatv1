@@ -4,20 +4,20 @@
 .home-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    height: 94vh;
-    margin:  0 8rem;
+    justify-content: center;
+    height: 93vh;
+    /* margin:  0 8rem; */
     
 }
 .home__explore{
-    flex: 1;
+    /* flex: 1; */
     padding: 0 10px;
 }
 .home__feed{
-    flex: 3;
+    /* flex: 3; */
     padding: 0 10px;
 }
 .home__messanger{
-    flex: 1;
+    /* flex: 1; */
     padding: 0 10px;
 }

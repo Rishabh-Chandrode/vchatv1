@@ -40,8 +40,16 @@
 }
 
 .register__body__item__button{
-    padding: 10px 20px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    
+    font-size: 15px;
+    
     background-color: #50c878;
     border: none;
-    border-radius: 20px;
+}
+
+.register__body__item__button:hover{
+    color: white;
+    border-color: white;
 }

@@ -34,11 +34,23 @@
 }
 
 .postCreator__lower{
-    width: 100%;
+    width: 95%;
     display: flex;
-    padding: 5px;
-    justify-content: space-around;
+    padding:  10px 20px;
+    justify-content: space-between;
 }
 .postCreator__attachments:hover{
     cursor: pointer;
+}
+.form{
+    width: 100%;
+}
+.upload__image{
+    height: auto;
+    width: 100%;
+}
+.postCreator__postButton{
+    background-color: #5dd0ae;
+    border: none;
+    padding: 5px 20px;
 }

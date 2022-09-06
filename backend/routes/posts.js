@@ -1,27 +1,54 @@
 const router = require("express").Router();
+
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+let path = require('path');
+
 const Post = require("../models/Post.js");
 const User = require("../models/User.js");
 
 
 
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'images');
+  },
+  filename: function(req, file, cb) {   
+      cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  if(allowedFileTypes.includes(file.mimetype)) {
+      cb(null, true);
+  } else {
+      cb(null, false);
+  }
+}
+
+let upload = multer({ storage, fileFilter });
+
+
 
 //create a post
-router.post("/", async (req,res) => {
-  const {desc, img, userId, username} = req.body;
-  //const img = JSON.stringify(baseImage);
-  //console.log(img);
-  const post = new Post({
-    desc: desc,
-    img: img,
-    userId: userId,
-    username: username
-  });
-  try{
-    await post.save();
-    res.status(200).send(post);
-  }catch(err){
-    res.status(400).send(err);
-  }
+router.post("/",upload.single('img') , async (req,res) => {
+  const name = req.body.name;
+  const desc = req.body.desc;
+  const img = req.file.filename;
+
+  const newpost = new Post({
+    username:name,
+    desc,
+    img,
+    userId:req.body.userId,
+    ProfilePicture:req.body.ProfilePicture
+  })
+  newpost.save()
+  .then( () => res.json('post added'))
+  .catch( err => res.status(400).json('Error :' +err));
+
+  
 })
     
 

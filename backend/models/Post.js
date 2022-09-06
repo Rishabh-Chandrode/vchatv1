@@ -12,6 +12,10 @@ const PostSchema = new mongoose.Schema({
     type:String,
     max:500
    },
+   ProfilePicture:{
+    type:String,
+    default:""
+   },
    img:{
     type:String
    },

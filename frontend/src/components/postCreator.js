@@ -1,112 +1,89 @@
 import React, { useState } from "react";
 import "./postCreator.css";
 import noprofile from "../assests/images/noprofile.png";
+import axios from "axios";
 
-import postService from "../services/postService";
+const PostCreator = ({user}) => {
+  const [newPost, setNewPost] = useState({
+    name: "",
+    desc: "",
+    img: "",
+  });
+  const name = localStorage.getItem("userName");
+  const userId = localStorage.getItem("userId");
+  console.log(user)
+  const handleSubmit = () => {
+    
+    
+    const formData = new FormData();
+    formData.append("name",name );
+    formData.append("userId",userId);
+    formData.append("desc", newPost.desc);
+    formData.append("img", newPost.img);
+    formData.append("ProfilePicture",user.profilePicture); 
 
-const PostCreator = () => {
-  const [postDesc, setPostDesc] = useState("");
-
-  const [baseImage, setBaseImage] = useState("");
-
-  const uploadImage = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
- 
-    setBaseImage(base64);
-    //console.log(base64);
+    console.log(formData);
+    axios
+      .post("http://localhost:5000/api/posts/", formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleChange = (e) => {
+    setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
 
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-  const [isPosting, setIsPosting] = useState(true);
-
-  const handleSubmit = async (e) => {
-    try {
-      const userId = localStorage.getItem("userId");
-      setIsPosting(false);
-      const response = await postService.createPost(
-        postDesc,
-        baseImage,
-        userId
-      );
-      console.log(response);
-
-      setBaseImage("");
-      setPostDesc("");
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
+  const handlePhoto = (e) => {
+    setNewPost({ ...newPost, img: e.target.files[0] });
   };
 
   return (
     <div className="postCreator">
-      <div className="postCreator__upper">
-        <div className="postCreator__avatar__container">
-          <img
-            src={noprofile}
-            className="explore__profilePicture"
-            alt="profilePicture"
-          />
-        </div>
+      <form className="form" onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="postCreator__upper">
+          <div className="postCreator__avatar__container">
+            {
+              user.profilePicture ? <img src={"http://localhost:5000/images/" + user.profilePicture} alt="profile" className="explore__profilePicture" /> : <img src={noprofile} alt="noprofile" className="explore__profilePicture" />
+            }
+            
+          </div>
 
-        <div className="postCreator__text__input__container">
-          <textarea
-            className="postCreator__text__input"
-            type="text"
-            placeholder="Write a post"
-            name="desc"
-            value={postDesc}
-            onChange={(e) => setPostDesc(e.target.value)}
-          />
+          <div className="postCreator__text__input__container">
+            <textarea
+              className="postCreator__text__input"
+              type="text"
+              placeholder="Write a post"
+              name="desc"
+              value={newPost.desc}
+                onChange={handleChange}
+            />
+          </div>
         </div>
-      </div>
-      <div className="postCreator__lower">
-        <div className="postCreator__attachments__images postCreator__attachments">
-          <label htmlFor="imgFile" className="postCreator__attachments">
-            Images
-          </label>
-          <input
-            id="imgFile"
-            type="file"
-            style={{ display: "none" }}
-            onChange={(e) => {
-              uploadImage(e);
-            }}
-          />
+        <div className="postCreator__lower">
+          <div className="postCreator__attachments__images postCreator__attachments">
+            <label htmlFor="imgFile" className="postCreator__attachments">
+              Images
+            </label>
+            <input 
+              id="imgFile" 
+              type="file" 
+              style={{ display: "none" }} 
+              onChange={handlePhoto}
+            />
+          </div>
+          
+          
+          <button className="postCreator__postButton" type="submit">
+            Post
+          </button>
         </div>
-        <div className="postCreator__attachments__videos postCreator__attachments">
-          Videos
-        </div>
-        <div className="postCreator__attachments__audios postCreator__attachments">
-          Audios
-        </div>
-        <button
-          className="postCreator__postButton"
-          onClick={handleSubmit}
-          type="button"
-        >
-          Post
-        </button>
-      </div>
-
-      {isPosting && baseImage && (
-        <img alt="img" src={baseImage} className="post__body__content__image" />
-      )}
-      {!isPosting && baseImage && <div>plese wait</div>}
+      </form>
+      {
+        newPost.img? <img className="upload__image" src={URL.createObjectURL(newPost.img)} alt=""/>:null
+      }
     </div>
   );
 };

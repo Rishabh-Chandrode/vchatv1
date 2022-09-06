@@ -2,30 +2,81 @@ const router = require("express").Router();
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+let path = require('path');
+
+const fs = require('fs')
+
+
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'images');
+    },
+    filename: function(req, file, cb) {   
+        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  
+  const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if(allowedFileTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+  }
+  
+  let upload = multer({ storage, fileFilter });
+  
 
 //update user
-router.put("/:id",async (req,res) => {
-    if(req.body.userId == req.params.id || req.body.isAdmin){
-        if(req.body.password){
-            try{
-                const salt = await bcrypt.genSalt(10);
-                req.body.password = await bcrypt.hash(req.body.password, salt);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        try{
-            const user = await User.findByIdAndUpdate(req.params.id,{
-                $set: req.body,
-            })
-            res.status(200).json("Account has been updated")
-        }catch(err){
-            console.log(err);
-        }
-    }else{
-        return res.status(403).json("you can only update your account")
+
+router.put("/:id",upload.single('img') , async (req, res) => {
+    try{
+        const previmgurl = req.body.previmgurl;
+        console.log(previmgurl);
+        
+        // fs.unlinkSync('images/'+previmgurl);
+   
+    const user = await User.findById(req.params.id);
+    
+        await user.updateOne({$set:{
+            username:req.body.username,
+            desc:req.body.desc,
+            profilePicture:req.file.filename,
+        }});
+        res.status(200).json("Account has been updated");
+    }catch(err){
+        res.status(500).json(err);
     }
-});
+    
+    
+})
+
+// router.put("/:id",async (req,res) => {
+//     if(req.body.userId == req.params.id || req.body.isAdmin){
+//         if(req.body.password){
+//             try{
+//                 const salt = await bcrypt.genSalt(10);
+//                 req.body.password = await bcrypt.hash(req.body.password, salt);
+//             }catch(err){
+//                 console.log(err);
+//             }
+//         }
+//         try{
+//             const user = await User.findByIdAndUpdate(req.params.id,{
+//                 $set: req.body,
+//             })
+//             res.status(200).json("Account has been updated")
+//         }catch(err){
+//             console.log(err);
+//         }
+//     }else{
+//         return res.status(403).json("you can only update your account")
+//     }
+// });
 
 //delete user
 

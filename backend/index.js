@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require('cors')
+const path = require('path');
 var bodyParser = require('body-parser')
 const userroutes = require("./routes/users");
 const authroutes = require("./routes/auth");
@@ -21,7 +22,8 @@ mongoose .connect(process.env.MONGO_URL, {
 .catch(err => console.log(err));
 
 //middleware
- 
+app.use(cors())
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -29,7 +31,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(helmet()); 
 app.use(morgan("common"));
-app.use(cors())
+
 
 
 

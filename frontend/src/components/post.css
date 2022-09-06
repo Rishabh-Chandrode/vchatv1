@@ -55,7 +55,7 @@
 }
 .post__body__content__text{
     flex: 75;
-    padding: 5px;
+    padding: 10px 5px;
 }
 
 .post__body__actions{

@@ -1,0 +1,56 @@
+.editProfile{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0081ab;
+}
+.editProfile__container{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.editProfile__container__body__avatar__container{
+    height: 100%;
+}
+.input__avatar{
+    display: none;
+}
+.editProfile__container__body__avatar{
+    border: 2px solid black;
+    border-radius: 20px;
+}
+.editProfile__container__header{
+    padding: 0 20px ;
+}
+.editProfile__container__body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.editProfile__username__input{
+    height: 25px;
+    width: 400px;
+}
+
+.editProfile__bio__input{
+    width: 400px;
+    height: 100px;
+    max-width: 500px;
+    max-height: 200px;
+}
+.editProfile__container__body__avatar{
+    height: 200px;
+    width: 200px;
+}
+
+.editProfile__container__body__info__button{
+    margin: 10px;
+    padding:  5px 10px;
+    float: right;
+}

@@ -6,7 +6,7 @@ import {useState , useEffect} from "react";
 import PostCreator from './postCreator';
 import { useParams } from 'react-router';
 
-const Feed = ({parent,Id}) => {
+const Feed = ({parent,Id,user}) => {
   const {id} = useParams();
   const [isFetched, setIsFetched] = useState(false);
   const [posts, setPosts] = useState();
@@ -35,10 +35,10 @@ const Feed = ({parent,Id}) => {
   });
   
   if(!posts)
-  return <div class="loader"></div>
+  return <div className='loader'></div>
   return (
     <div className='feed'>
-      {parent === "timeline" ?<PostCreator/> : null}
+      {parent === "timeline" ?<PostCreator user={user} /> : null}
       {/* <div className='feed__header'>
         <div className='feed__header__title'>
           Feed
@@ -46,7 +46,7 @@ const Feed = ({parent,Id}) => {
       </div> */}
       <div className='feed__body'>
         {posts.flatMap((post) =>
-          <Post post = {post} key={post._id} />
+          <Post post = {post} user={user} key={post._id} />
         )}
       </div>
     </div>

@@ -24,7 +24,6 @@ const Explore = () => {
         data: { userId: id },
       });
       window.location.reload();
-      console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -40,11 +39,14 @@ const Explore = () => {
         data: { userId: id },
       });
       window.location.reload();
-      console.log(response.data);
+      // console.log(response.data);
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect( () => {
+    console.log("useEffect");
+  },[users] )
 
   useEffect(() => {
     if (!isfetched) {
@@ -82,15 +84,15 @@ const Explore = () => {
                     alt="profilePicture"
                   />
                 </div>
-                <div className="explore__body__item__username">
-                  <Link to={`/userprofile/${user._id}`} onClick={window.location.reload} key={user._id}>
+                <div className="explore__body__item__username__wrapper">
+                  <Link to={`/userprofile/${user._id}`} className="explore__body__item__username" onClick={window.location.reload} key={user._id}>
                     {user.username}
                   </Link>
                 </div>
               </div>
               <div className="explore__body__item__right">
-                <div className="explore__body__item__button">
-                  <button
+                <div className="explore__body__item__button__wrapper">
+                  <button className="explore__body__item__button"
                     id={user._id}
                     onClick={
                       user.followers.includes(currentUserId)

@@ -41,8 +41,8 @@ const Connections = () => {
   const handleUnfollow = async (id) => {
     try{
       const response = await axios.put(`http://localhost:5000/api/users/${id}/unfollow`,{userId:currentUserId});
-      console.log(response.data);
-      
+      // console.log(response.data);
+      window.location.reload();
     }catch(err){
       console.log(err);
     }

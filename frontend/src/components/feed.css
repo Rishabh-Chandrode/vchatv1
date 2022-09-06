@@ -4,6 +4,7 @@
     overflow-y: scroll;
     max-height: 100%;
     max-width: 600px;
+    min-width: 600px;
     margin: 0 auto;
 }
 .feed::-webkit-scrollbar {
