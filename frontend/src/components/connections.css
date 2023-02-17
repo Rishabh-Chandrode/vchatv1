@@ -3,6 +3,7 @@
     height: 94vh;
     overflow-y: scroll;
     background-color: white;
+    margin-right: 50px;
 }
 .connections__header{
   
@@ -13,4 +14,11 @@
 .connections__header__title{
     display:flex;
     justify-content: space-evenly;
+}
+
+.connections__header__title__followers__button ,.connections__header__title__following__button {
+    background-color: #5dd0ae;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
 }
