@@ -6,9 +6,9 @@ follow/unfollow user, create, like/dislike posts, view public profiles
 
 ## Screenshots
 
-![App Screenshot](https://raw.githubusercontent.com/Rishabh-Chandrode/VChat/main/demo/Screenshot%202022-09-06%20181756.png)
+![App Screenshot](https://raw.githubusercontent.com/Rishabh-Chandrode/VChat/main/demo/Screenshot%202024-01-18%20123324.png)
 
-![App Screenshot](https://raw.githubusercontent.com/Rishabh-Chandrode/VChat/main/demo/Screenshot%202022-09-06%20181846.png)
+![App Screenshot](https://github.com/Rishabh-Chandrode/VChat/blob/main/demo/Screenshot%202024-01-18%20123344.png?raw=true)
 
 
 ## Tech Stack
